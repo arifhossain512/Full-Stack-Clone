@@ -1,10 +1,11 @@
 import React, { useReducer, useState } from "react";
 import "./Add.scss";
-import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
-import upload from "../../utils/upload";
+import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer.js";
+import upload from "../../utils/upload.js";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import newRequest from "../../utils/newRequest";
+import newRequest from "../../utils/newRequest.js";
 import { useNavigate } from "react-router-dom";
+import getCurrentUser from "../../utils/getCurrentUser.js"
 
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
@@ -45,14 +46,15 @@ const Add = () => {
       console.log(err);
     }
   };
-
+console.log(state);
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (gig) => {
-      return newRequest.post("/gigs", gig);
+      return newRequest.post(`/gigs`, gig);
+      // ${getCurrentUser}
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["myGigs"]);
@@ -62,7 +64,7 @@ const Add = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(state);
-    // navigate("/mygigs")
+    navigate("/myGigs")
   };
 
   return (

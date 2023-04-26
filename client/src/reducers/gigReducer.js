@@ -1,5 +1,7 @@
+import getCurrentUser from "../utils/getCurrentUser";
+
 export const INITIAL_STATE = {
-  userId: JSON.parse(localStorage.getItem("currentUser"))?._id,
+  userId:getCurrentUser?._id,
   title: "",
   cat: "",
   cover: "",

@@ -19,7 +19,7 @@ const Message = () => {
   });
 
   const mutation = useMutation({
-    mutationFn: (message) => {
+    mutationFn: (message) => { 
       return newRequest.post(`/messages`, message);
     },
     onSuccess: () => {

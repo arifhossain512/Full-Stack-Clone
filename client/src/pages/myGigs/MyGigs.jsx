@@ -1,29 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./MyGigs.scss";
-import getCurrentUser from "../../utils/getCurrentUser";
+import getCurrentUser from "../../utils/getCurrentUser.js";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import newRequest from "../../utils/newRequest";
+import newRequest from "../../utils/newRequest.js";
 
 function MyGigs() {
   const currentUser = getCurrentUser();
-
+console.log("currentuser id" , currentUser._id);
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["myGigs"],
+    queryKey: [currentUser._id],
     queryFn: () =>
-      newRequest.get(`/gigs?userId=${currentUser.id}`).then((res) => {
+      newRequest.get(`/gigs/single/?userId=${currentUser._id}`).then((res) => {
         return res.data;
+      
       }),
   });
-
+ console.log("data is : ", data);
   const mutation = useMutation({
     mutationFn: (id) => {
       return newRequest.delete(`/gigs/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["myGigs"]);
+      queryClient.invalidateQueries(["myGigs"]); 
     },
   });
 
