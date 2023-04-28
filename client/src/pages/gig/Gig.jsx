@@ -24,7 +24,7 @@ function Gig() {
     error: errorUser,
     data: dataUser,
   } = useQuery({
-    queryKey: ["user"],
+    queryKey: [userId],
     queryFn: () =>
       newRequest.get(`/users/${userId}`).then((res) => {
         return res.data;
@@ -157,7 +157,7 @@ function Gig() {
               ))}
             </div>
             <Link to={`/pay/${id}`}>
-            <button>Continue</button>
+              <button>Continue</button>
             </Link>
           </div>
         </div>

@@ -30,7 +30,7 @@ export const login = async (req, res, next) => {
     const token = jwt.sign(
       {
         id: user._id,
-        isSeller: user.isSeller,
+        isSeller: user.isSeller, 
       },
       process.env.JWT_KEY
 

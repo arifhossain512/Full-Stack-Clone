@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await newRequest.post("/auth/login", { username, password });
-      console.log(res);
+  
       localStorage.setItem("currentUser", JSON.stringify(res.data));
 
       navigate("/")

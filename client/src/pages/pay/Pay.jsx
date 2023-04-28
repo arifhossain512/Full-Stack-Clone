@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import CheckoutForm from "../../components/checkoutForm/CheckoutForm";
 
 const stripePromise = loadStripe(
-  "pk_test_51N18VoLCAaXOyq0IS1PPWyzV2lzyjA2q0hSvdgTWufBEGZqov0j58JAtgsnOTSCu2Smmwor8jakljDmD2EZCy9uo00aCgOU4rfy"
+  "pk_test_51N18VoLCAaXOyq0IS1PPWyzV2lzyjA2q0hSvdgTWufBEGZqov0j58JAtgsnOTSCu2Smmwor8jakljDmD2EZCy9uo00aCgOU4rf"
 );
 
 const Pay = () => {
@@ -15,7 +15,7 @@ const Pay = () => {
 
   const { id } = useParams();
 
-  useEffect(() => {
+  useEffect(() => {  
     const makeRequest = async () => {
       try {
         const res = await newRequest.post(

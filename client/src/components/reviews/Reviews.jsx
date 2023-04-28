@@ -3,6 +3,7 @@ import React from "react";
 import newRequest from "../../utils/newRequest";
 import Review from "../review/Review";
 import "./Reviews.scss";
+import getCurrentUser from "../../utils/getCurrentUser"
 const Reviews = ({ gigId }) => {
 
   const queryClient = useQueryClient()
@@ -18,10 +19,10 @@ const Reviews = ({ gigId }) => {
     mutationFn: (review) => {
       return newRequest.post("/reviews", review);
     },
-    onSuccess:()=>{
+    onSuccess: () => {
       queryClient.invalidateQueries(["reviews"])
     }
-  }); 
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +30,15 @@ const Reviews = ({ gigId }) => {
     const star = e.target[1].value;
     mutation.mutate({ gigId, desc, star });
   };
+  const User = getCurrentUser();
+  let seller;
+  if (User !== null) { seller = User?.isSeller;
+
+    }
+    console.log(seller);
+
+  //  let currentUser= User.isSeller;
+  
 
   return (
     <div className="reviews">
@@ -36,9 +46,9 @@ const Reviews = ({ gigId }) => {
       {isLoading
         ? "loading"
         : error
-        ? "Something went wrong!"
-        : data.map((review) => <Review key={review._id} review={review} />)}
-      <div className="add">
+          ? "Something went wrong!"
+          : data.map((review) => <Review key={review._id} review={review} />)}
+      { seller === false && <div className="add">
         <h3>Add a review</h3>
         <form action="" className="addForm" onSubmit={handleSubmit}>
           <input type="text" placeholder="write your opinion" />
@@ -51,8 +61,9 @@ const Reviews = ({ gigId }) => {
           </select>
           <button>Send</button>
         </form>
-      </div>
+      </div>}
     </div>
+
   );
 };
 

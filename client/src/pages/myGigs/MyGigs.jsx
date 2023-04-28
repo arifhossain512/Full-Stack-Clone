@@ -7,24 +7,25 @@ import newRequest from "../../utils/newRequest.js";
 
 function MyGigs() {
   const currentUser = getCurrentUser();
-console.log("currentuser id" , currentUser._id);
+
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
     queryKey: [currentUser._id],
     queryFn: () =>
-      newRequest.get(`/gigs/single/?userId=${currentUser._id}`).then((res) => {
+      newRequest.get(`gigs/mygigs/${currentUser._id}`).then((res) => {
         return res.data;
-      
+
       }),
   });
- console.log("data is : ", data);
+  console.log("data is :", data);
+
   const mutation = useMutation({
     mutationFn: (id) => {
       return newRequest.delete(`/gigs/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["myGigs"]); 
+      queryClient.invalidateQueries([currentUser._id]);
     },
   });
 
@@ -49,31 +50,42 @@ console.log("currentuser id" , currentUser._id);
             )}
           </div>
           <table>
-            <tr>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Sales</th>
-              <th>Action</th>
-            </tr>
-            {data.map((gig) => (
-              <tr key={gig._id}>
-                <td>
-                  <img className="image" src={gig.cover} alt="" />
-                </td>
-                <td>{gig.title}</td>
-                <td>{gig.price}</td>
-                <td>{gig.sales}</td>
-                <td>
-                  <img
-                    className="delete"
-                    src="./img/delete.png"
-                    alt=""
-                    onClick={() => handleDelete(gig._id)}
-                  />
-                </td>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Sales</th>
+                <th>Action</th>
               </tr>
-            ))}
+            </thead>
+
+            <tbody>
+              {Array.isArray(data) &&
+                data.map((gig) => (
+                  <tr key={gig._id}>
+
+                    <td>
+                      {/* <a to="/gig/`${gig._id}`" >  */}
+                      <img className="image" src={gig.cover} alt="" />
+                      {/* </a> */}
+                    </td>
+                    <td>{gig.title}</td>
+                    <td>{gig.price}</td>
+                    <td>{gig.sales}</td>
+
+                    <td>
+                      <img
+                        className="delete"
+                        src="./img/delete.png"
+                        alt=""
+                        onClick={() => handleDelete(gig._id)}
+                      />
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
           </table>
         </div>
       )}

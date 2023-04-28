@@ -3,9 +3,11 @@ import Message from "../models/message.model.js";
 import Conversation from "../models/conversation.model.js";
 
 export const createMessage = async (req, res, next) => {
+
   const newMessage = new Message({
     conversationId: req.body.conversationId,
     userId: req.userId,
+    userImg: req.body.userImg,
     desc: req.body.desc,
   });
   try {

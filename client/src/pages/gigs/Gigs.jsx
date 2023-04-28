@@ -12,9 +12,10 @@ function Gigs() {
   const maxRef = useRef();
 
   const { search } = useLocation();
+  
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["gigs"],
+    queryKey: ["search"],
     queryFn: () =>
       newRequest
         .get(
@@ -25,7 +26,7 @@ function Gigs() {
         }),
   });
 
-  // console.log(data);
+  console.log(data);
 
   const reSort = (type) => {
     setSort(type);
