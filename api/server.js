@@ -10,6 +10,10 @@ import reviewRoute from "./routes/review.route.js";
 import authRoute from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path"
+import { fileURLToPath } from 'url';
+
+
 
 const app = express();
 dotenv.config();
@@ -24,10 +28,16 @@ const connect = async () => {
     }
 };
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
-app.use(cookieParser());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+app.get('/', (req,res)=>{
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+})
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/gigs", gigRoute);
@@ -43,7 +53,8 @@ app.use((err, req, res, next) => {
     return res.status(errorStatus).send(errorMessage);
 });
 
-app.listen(8800, () => {
+const PORT = 3000;
+app.listen(PORT, () => {
     connect();
     console.log("Backend server is running!");
 });

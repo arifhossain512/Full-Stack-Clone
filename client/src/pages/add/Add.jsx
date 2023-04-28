@@ -46,7 +46,7 @@ const Add = () => {
       console.log(err);
     }
   };
-console.log(state);
+
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();

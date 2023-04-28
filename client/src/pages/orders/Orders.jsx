@@ -31,7 +31,7 @@ const Orders = () => {
         });
         navigate(`/message/${res.data.id}`);
       }
-    }
+    } 
   };
   return (
     <div className="orders">

@@ -35,10 +35,8 @@ const Reviews = ({ gigId }) => {
   if (User !== null) { seller = User?.isSeller;
 
     }
-    console.log(seller);
-
-  //  let currentUser= User.isSeller;
   
+
 
   return (
     <div className="reviews">
