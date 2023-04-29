@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
   "install-server": "npm install --prefix api",
-  "install-client": "yarn --cwd client install",
+  "install-client": "npm install --prefix client",
   "install": "npm-run-all --sequential install-server install-client",
-  "server": "npm run start --prefix api",
-  "client": "yarn --cwd client run dev",
-  "build":"yarn --cwd client run build && npm start --prefix api",
+  "server": "npm run watch --prefix api",
+  "client": "npm run start --prefix client",
   "watch": "npm-run-all --parallel server client",
+  "deploy":"npm run build --prefix client && npm start --prefix api",
   "test": "npm run test --prefix api && yarn --cwd client run test"
 },
   "keywords": [],

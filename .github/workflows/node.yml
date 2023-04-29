@@ -14,6 +14,5 @@ jobs:
         with:
           node-version: '16'
       - run: npm install
-      - name: Build client
-        run: yarn run build
-        working-directory: client
+      - run: npm build --prefix client
+    
