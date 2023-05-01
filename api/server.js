@@ -31,7 +31,7 @@ const connect = async () => {
 
 
 
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({ origin: "https://full-stack-clone.vercel.app", credentials: true }));
 app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
