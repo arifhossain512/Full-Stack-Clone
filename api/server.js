@@ -11,7 +11,7 @@ import authRoute from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path"
-import mime from "mime";
+
 import { fileURLToPath } from 'url';
 
 
@@ -29,9 +29,7 @@ const connect = async () => {
     }
 };
 
-mime.define({
-    'application/javascript': ['mjs', 'js'],
-});
+
 
 app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json());
@@ -40,9 +38,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-})
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/gigs", gigRoute);
@@ -50,6 +46,10 @@ app.use("/api/orders", orderRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+})
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
