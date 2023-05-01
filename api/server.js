@@ -53,7 +53,7 @@ app.use((err, req, res, next) => {
     return res.status(errorStatus).send(errorMessage);
 });
 
-const PORT = 3000;
+const PORT = 8000;
 app.listen(PORT, () => {
     connect();
     console.log("Backend server is running!");
