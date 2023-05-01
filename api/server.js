@@ -36,7 +36,20 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, 'public')));
+// Your code
+if (process.env.NODE_ENV === "production") {
+   
+    app.use(express.static(path.resolve(__dirname, 'public' )));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'public', 'index.html'),function (err) {
+            if(err) {
+                res.status(500).send(err)
+            }
+        });
+    })
+}
+// Your code
+
 app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
@@ -47,9 +60,7 @@ app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-})
+
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
