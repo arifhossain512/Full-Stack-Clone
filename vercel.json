@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/server.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "api/public/**",
+            "use": "@vercel/static",
+            "config": {
+                "maxAge": 3600
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "api/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "api/public/index.html"
+        }
+    ]
+}
