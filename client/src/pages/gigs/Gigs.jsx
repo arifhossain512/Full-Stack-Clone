@@ -12,7 +12,7 @@ function Gigs() {
   const maxRef = useRef();
 
   const { search } = useLocation();
-  
+
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["search"],
@@ -79,7 +79,8 @@ function Gigs() {
             ? "loading"
             : error
               ? "Something went wrong!"
-              : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
+              : Array.isArray(data) &&
+              data.map((gig) => <GigCard key={gig._id} item={gig} />)}
         </div>
       </div>
     </div>

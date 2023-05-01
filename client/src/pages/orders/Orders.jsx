@@ -31,7 +31,7 @@ const Orders = () => {
         });
         navigate(`/message/${res.data.id}`);
       }
-    } 
+    }
   };
   return (
     <div className="orders">
@@ -51,23 +51,24 @@ const Orders = () => {
               <th>Price</th>
               <th>Contact</th>
             </tr>
-            {data.map((order) => (
-              <tr key={order._id}>
-                <td>
-                  <img className="image" src={order.img} alt="" />
-                </td>
-                <td>{order.title}</td>
-                <td>{order.price}</td>
-                <td>
-                  <img
-                    className="message"
-                    src="./img/message.png"
-                    alt=""
-                    onClick={() => handleContact(order)}
-                  />
-                </td>
-              </tr>
-            ))}
+            {Array.isArray(data) &&
+              data.map((order) => (
+                <tr key={order._id}>
+                  <td>
+                    <img className="image" src={order.img} alt="" />
+                  </td>
+                  <td>{order.title}</td>
+                  <td>{order.price}</td>
+                  <td>
+                    <img
+                      className="message"
+                      src="./img/message.png"
+                      alt=""
+                      onClick={() => handleContact(order)}
+                    />
+                  </td>
+                </tr>
+              ))}
           </table>
         </div>
       )}

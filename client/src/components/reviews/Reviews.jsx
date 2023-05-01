@@ -32,10 +32,11 @@ const Reviews = ({ gigId }) => {
   };
   const User = getCurrentUser();
   let seller;
-  if (User !== null) { seller = User?.isSeller;
+  if (User !== null) {
+    seller = User?.isSeller;
 
-    }
-  
+  }
+
 
 
   return (
@@ -45,8 +46,9 @@ const Reviews = ({ gigId }) => {
         ? "loading"
         : error
           ? "Something went wrong!"
-          : data.map((review) => <Review key={review._id} review={review} />)}
-      { seller === false && <div className="add">
+          : Array.isArray(data) &&
+          data.map((review) => <Review key={review._id} review={review} />)}
+      {seller === false && <div className="add">
         <h3>Add a review</h3>
         <form action="" className="addForm" onSubmit={handleSubmit}>
           <input type="text" placeholder="write your opinion" />

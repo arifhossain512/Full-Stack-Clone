@@ -18,9 +18,9 @@ const Message = () => {
         return res.data;
       }),
   });
-  console.log(data)
+
   const mutation = useMutation({
-    mutationFn: (message) => { 
+    mutationFn: (message) => {
       return newRequest.post(`/messages`, message);
     },
     onSuccess: () => {
@@ -33,7 +33,7 @@ const Message = () => {
     e.preventDefault();
     mutation.mutate({
       conversationId: id,
-      userImg:currentUser.img,
+      userImg: currentUser.img,
       desc: e.target[0].value,
     });
     e.target[0].value = "";
@@ -51,16 +51,17 @@ const Message = () => {
           "error"
         ) : (
           <div className="messages">
-           
-            {  data.map((m) => (
-              <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
-               {} <img
-                  src={m.userId === currentUser._id ? currentUser.img : m.userImg   }
-                  alt=""
-                />
-                <p>{m.desc}</p>
-              </div>
-            ))}
+
+            {Array.isArray(data) &&
+              data.map((m) => (
+                <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
+                  { } <img
+                    src={m.userId === currentUser._id ? currentUser.img : m.userImg}
+                    alt=""
+                  />
+                  <p>{m.desc}</p>
+                </div>
+              ))}
           </div>
         )}
         <hr />
