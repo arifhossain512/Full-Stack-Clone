@@ -1,0 +1,29 @@
+name: Fiverr FullStack Clone
+on:
+  push: 
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    env:
+      CI: true
+      MONGO: mongodb://localhost/fiverr
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+        mongodb-version: ['6.0', '4.4']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js Version ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Use MongoDB from Github actions
+        uses: supercharge/mongodb-github-action@1.9.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+      - run: npm install
+      - run: npm run build --prefix client
+    

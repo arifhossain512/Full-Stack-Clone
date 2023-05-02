@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "install": "npm install --force",
     "start": "vite",
-    "build": "vite build ",
-    "preview": "vite preview"
+    "build": "vite build "
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^1.16.4",

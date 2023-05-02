@@ -5,6 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+    "install":"npm install",
     "start": "node server.js",
     "watch": "nodemon server.js"
   },

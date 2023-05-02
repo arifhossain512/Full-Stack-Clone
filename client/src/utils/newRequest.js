@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const newRequest = axios.create({
-  baseURL:"https://full-stack-clone-arifhossain512.vercel.app/api",
+  baseURL:"https://fiverr-clone-tzhc.onrender.com/api",
   withCredentials: true,
 });
 
