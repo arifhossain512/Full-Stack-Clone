@@ -11,13 +11,15 @@ import authRoute from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path"
-
 import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 const app = express();
 dotenv.config();
+
 mongoose.set("strictQuery", true);
 
 const connect = async () => {
@@ -31,15 +33,20 @@ const connect = async () => {
 
 
 
+app.use(express.json());
+app.use(cookieParser());
+
+
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
 // app.use(cors({ origin: "*", credentials: true }));
 app.use(cors({
     origin: [/^https?:\/\/([a-zA-Z0-9-]+\.)?vercel\.app$/, "http://localhost:5173"],
     credentials: true
 }));
-app.use(express.json());
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 // Your code
 if (process.env.NODE_ENV === "production") {
 
@@ -54,7 +61,7 @@ if (process.env.NODE_ENV === "production") {
 }
 // Your code
 
-app.use(cookieParser());
+
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);

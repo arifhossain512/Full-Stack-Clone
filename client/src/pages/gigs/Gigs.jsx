@@ -22,10 +22,11 @@ function Gigs() {
           .get(
             `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
           );
+          console.log(response);
         return response.data;
 
       } catch (error) {
-        console.log(error);
+        console.log("gigs error is :" ,error);
       }
 
     }
