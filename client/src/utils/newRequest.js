@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const newRequest = axios.create({
-  baseURL:`${window.location.origin}/api/`,
+  baseURL:"https://full-stack-clone-arifhossain512.vercel.app/api",
   withCredentials: true,
 });
 
 export default newRequest;
-// https://full-stack-clone.vercel.app/api/
+// http://localhost:8000/api

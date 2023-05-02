@@ -48,6 +48,10 @@ function App() {
           element: <Gigs />,
         },
         {
+          path: "/gigs/all",
+          element: <Gigs />,
+        },
+        {
           path: "/mygigs",
           element: <MyGigs />,
         },

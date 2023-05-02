@@ -18,7 +18,7 @@ function Gigs() {
     queryKey: ["search"],
     queryFn: async () => {
       try {
-        const response = await newRequest.get(`/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`);
+        const response = await newRequest.get(`/gigs/all`);
         console.log(response);
         return response.data;
 

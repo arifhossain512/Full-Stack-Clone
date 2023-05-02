@@ -4,7 +4,7 @@ import {
   deleteGig,
   getGig,
   getSingleGig,
-  getGigs
+  getGigs,getAllGigs
 } from "../controllers/gig.controller.js";
 import { verifyToken } from "../middleware/jwt.js";
 
@@ -15,6 +15,7 @@ router.delete("/:id", verifyToken, deleteGig);
 router.get("/mygigs/:id", getGig);
 router.get("/single/:id", getSingleGig);
 router.get("/", getGigs);
+router.get("/all", getAllGigs);
 
 
 export default router;
