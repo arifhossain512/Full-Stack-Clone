@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "build": "vite build --outDir ../api/public",
+    "build": "vite build ",
     "preview": "vite preview"
   },
   "dependencies": {
