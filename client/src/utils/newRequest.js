@@ -6,4 +6,3 @@ const newRequest = axios.create({
 });
 
 export default newRequest;
-// 
