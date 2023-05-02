@@ -47,7 +47,19 @@ app.use(cors({
     origin: [/^https?:\/\/([a-zA-Z0-9-]+\.)?vercel\.app$/, "http://localhost:5173"],
     credentials: true
 }));
-// Your code
+
+
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/gigs", gigRoute);
+app.use("/api/orders", orderRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
+app.use("/api/reviews", reviewRoute);
+
+
+
+
 if (process.env.NODE_ENV === "production") {
 
     app.use(express.static(path.resolve(__dirname, 'public')));
@@ -59,17 +71,7 @@ if (process.env.NODE_ENV === "production") {
         });
     })
 }
-// Your code
 
-
-
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/gigs", gigRoute);
-app.use("/api/orders", orderRoute);
-app.use("/api/conversations", conversationRoute);
-app.use("/api/messages", messageRoute);
-app.use("/api/reviews", reviewRoute);
 
 
 
