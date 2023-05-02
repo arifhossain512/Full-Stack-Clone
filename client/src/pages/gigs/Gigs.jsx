@@ -16,17 +16,23 @@ function Gigs() {
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["search"],
-    queryFn: () =>
-      newRequest
-        .get(
-          `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
-        )
-        .then((res) => {
-          return res.data;
-        }),
+    queryFn: async () => {
+      try {
+        const response = await newRequest
+          .get(
+            `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+          );
+        return response.data;
+
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
   });
 
-
+  console.log(typeof data);
+  console.log("data is :", data);
 
   const reSort = (type) => {
     setSort(type);
