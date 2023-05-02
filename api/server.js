@@ -31,22 +31,23 @@ const connect = async () => {
     }
 };
 
-
-
-app.use(express.json());
-app.use(cookieParser());
-
-
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
-});
-// app.use(cors({ origin: "*", credentials: true }));
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+//     next();
+// });
 app.use(cors({
     origin: [/^https?:\/\/([a-zA-Z0-9-]+\.)?vercel\.app$/, "http://localhost:5173"],
     credentials: true
 }));
+
+app.use(express.json());
+app.use(cookieParser());
+
+app.use(express.static(path.resolve(__dirname, 'public')));
+
+
+
+
 
 
 app.use("/api/auth", authRoute);
@@ -60,17 +61,16 @@ app.use("/api/reviews", reviewRoute);
 
 
 
-if (process.env.NODE_ENV === "production") {
-
-    app.use(express.static(path.resolve(__dirname, 'public')));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'public', 'index.html'), function (err) {
-            if (err) {
-                res.status(500).send(err)
-            }
-        });
-    })
-}
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'public', 'index.html'), function (err) {
+//         if (err) {
+//             res.status(500).send(err)
+//         }
+//     });
+// })
+app.get("*", (req, res) => {
+    res.send("hello world");
+})
 
 
 
