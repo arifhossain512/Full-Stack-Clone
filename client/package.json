@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "install": "npm install --force",
+    "install-client": "npm install --force",
     "start": "vite",
     "build": "vite build "
   },
