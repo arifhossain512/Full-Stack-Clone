@@ -14,12 +14,17 @@ const Add = () => {
 
   const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
+  /**
+   * This function dispatches an action with the name and value of the input field that triggered the
+   * change event.
+   */
   const handleChange = (e) => {
     dispatch({
       type: "CHANGE_INPUT",
       payload: { name: e.target.name, value: e.target.value },
     });
   };
+
   const handleFeature = (e) => {
     e.preventDefault();
     dispatch({
@@ -29,11 +34,22 @@ const Add = () => {
     e.target[0].value = "";
   };
 
+  /**
+   * The function handles the upload of files, including a cover image and multiple images, and
+   * dispatches the URLs to be added to the state.
+   */
+
   const handleUpload = async () => {
     setUploading(true);
     try {
       const cover = await upload(singleFile);
 
+      /* This code is using the `Promise.all()` method to upload multiple files asynchronously and
+      return an array of their URLs. It takes an array of files (`files`), spreads it into a new
+      array, and maps over each file to upload it using the `upload()` function. The `await` keyword
+      is used to wait for each upload to complete before returning the URL. The `Promise.all()`
+      method then waits for all the promises to resolve and returns an array of URLs, which is stored
+      in the `images` variable. */
       const images = await Promise.all(
         [...files].map(async (file) => {
           const url = await upload(file);
@@ -41,15 +57,26 @@ const Add = () => {
         })
       );
       setUploading(false);
+     /* `dispatch({ type: "ADD_IMAGES", payload: { cover, images } });` is dispatching an action to the
+     gigReducer. The action type is "ADD_IMAGES" and the payload is an object containing the URLs of
+     the cover image and multiple images that were uploaded. The gigReducer will then update the
+     state with these URLs. */
       dispatch({ type: "ADD_IMAGES", payload: { cover, images } });
     } catch (err) {
       console.log(err);
     }
   };
 
+
   const navigate = useNavigate();
 
   const queryClient = useQueryClient();
+
+  /** 
+   *  `const mutation = useMutation({...})` is using the `useMutation` hook from the
+   *  ` @tanstack/react-query` library to create a mutation function that will send a POST request to the
+   *  /gigs endpoint with the `gig` object as the request body. 
+  */
 
   const mutation = useMutation({
     mutationFn: (gig) => {
@@ -61,6 +88,10 @@ const Add = () => {
     },
   });
 
+  /**
+   * This function handles form submission by preventing the default behavior, calling a mutation
+   * function with the form state, and navigating to a new page.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(state);

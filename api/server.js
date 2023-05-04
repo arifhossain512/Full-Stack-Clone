@@ -36,7 +36,7 @@ const connect = async () => {
 //     next();
 // });
 app.use(cors({
-    origin: ["https://fiverr-clone-tzhc.onrender.com", "http://localhost:5173"],
+    origin: ["https://fiverr-clone-tzhc.onrender.com", "http://localhost:*"],
     credentials: true
 }));
 

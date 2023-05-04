@@ -15,7 +15,7 @@
   </a>
    <h3 align="center">Full-Stack-Clone</h3>
    <p align="center">
-    A Full-Stack Website-App Clone with Modern Technologies.
+    A Full-Stack Web-App  
     <br />
     <a href="https://github.com/arifhossain512/Full-Stack-Clone"><strong>Explore the docs »</strong></a>
     <br />
@@ -111,29 +111,57 @@ Node.js and npm installed. If you don't have them installed, you can download th
 ## Installation
 
 * Use git clone or fork the repo to have it on  your remote and local repository.
-* go step step to set the project locally smoothly.
-1. Open the l
-2. Clone the repo
+* go step by step to set the project locally smoothly.
+1. Change the `.env.example to .env ` in both client and api folder
+    ```sh
+    cd api/
+    cp .env.example .env
+    cd ..
+    ```
+2. Set your environmental variable in the `.env` file
+    ```sh
+    MONGO=mongodb url (for database connection)
+    JWT_KEY= randomly generated string (for authentication)
+    STRIPE= stripe private key (only if you want to process payment)
+    VITE_UPLOAD_LINK= cloudinary file upload link
+    ```
+    
+3. Install NPM packages for` root directory` first then for api and client with one single command
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
+   npm start
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. To start both client and server in `development mode`
+   ```sh
+   npm run watch
+   ```
+5. To start both client and server in `development mode`
+   ```sh
+   npm run watch
    ```
 
+## Local development file setup
+* Change `backend server address` : copy and paste the below code in [newRequest.js](https://github.com/arifhossain512/Full-Stack-Clone/blob/main/client/src/utils/newRequest.js) file.
+
+  ```js
+    const newRequest = axios.create({
+      baseURL:"http://localhost:8000/api",
+      withCredentials: true,
+     });
+  ```
+- > if you dont want to go through ` step 1 & 2 ` then just use the default backend server address in the [newRequest.js](https://github.com/arifhossain512/Full-Stack-Clone/blob/main/client/src/utils/newRequest.js) file to talk to my already served backend server api.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+Usage are listed below:
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+* open buyer or seller account by clicking join
+* upload you profile picture and fill the details
+*  
+*
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
