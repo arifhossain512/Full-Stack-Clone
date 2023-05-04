@@ -46,9 +46,9 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usages--features">Usage</a></li>
-    <li><a href="#local-development-file-setup">Roadmap</a></li>
-    <li><a href="#contribution">Contributing</a></li>
+    <li><a href="#usage--features">Usage / Features</a></li>
+    <li><a href="#local-development-file-setup">Local Development & File setup</a></li>
+    <li><a href="#contribution">Contribution</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
