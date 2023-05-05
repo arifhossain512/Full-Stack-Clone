@@ -233,7 +233,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Md. Arif Hossain - [@arifhossain512](https://twitter.com/arifhossain512) - mdarifhossain512bd@gmail.com
+Md. Arif Hossain - [TWITTER](https://twitter.com/arifhossain512) - mdarifhossain512bd@gmail.com
 
 <!-- Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name) -->
 
