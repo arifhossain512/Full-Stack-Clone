@@ -60,14 +60,17 @@ app.use("/api/reviews", reviewRoute);
 
 
 
-
-// app.get("*", (req, res) => {
+// for docker image build and to serve frontend within backend server 
+// --outDir=../api/public
+// app.get("/*", (req, res) => {
 //     res.sendFile(path.resolve(__dirname, 'public', 'index.html'), function (err) {
 //         if (err) {
 //             res.status(500).send(err)
 //         }
 //     });
 // })
+
+// for only backend use
 app.get("/", (req, res) => {
     res.send("hello from server 👓");
 })

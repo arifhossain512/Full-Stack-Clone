@@ -2,6 +2,11 @@ FROM node:lts-alpine
 
 WORKDIR /app
 
+
+
+COPY Dockerfile .
+COPY README.md .
+
 COPY package*.json ./
 
 COPY client/package*.json client/
@@ -11,9 +16,12 @@ COPY api/package*.json api/
 RUN npm run install-server --only=production 
 
 COPY client/ client/
+
 RUN npm run build --prefix client
 
 COPY api/ api/
+
+
 
 
 USER node 

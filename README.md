@@ -116,7 +116,7 @@ Node.js and npm installed. If you don't have them installed, you can download th
     ```sh
     cp .env.example .env
     ```
-2. Set your environmental variable in the `.env` file
+2. Set your environmental variable in the `.env` file(`applicable when using docker build to run this image in docker container `)
     ```sh
     MONGO=mongodb url (for database connection)
     JWT_KEY= randomly generated string (for authentication)

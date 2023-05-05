@@ -6,7 +6,7 @@
   "scripts": {
     "install-client": "npm install --force",
     "start": "vite",
-    "build": "vite build ",
+    "build": "vite build  ",
     "test": "TEST_API_KEY=your-api-key jest"
   },
   "dependencies": {

@@ -19,7 +19,7 @@ function Gigs() {
     queryFn: async () => {
       try {
         const response = await newRequest.get(`/gigs/all`);
-        console.log(response);
+        // console.log(response);
         return response.data;
 
       } catch (error) {
@@ -29,8 +29,8 @@ function Gigs() {
     }
   });
 
-  console.log(typeof data);
-  console.log("data is :", data);
+  // console.log(typeof data);
+  // console.log("data is :", data);
 
   const reSort = (type) => {
     setSort(type);
