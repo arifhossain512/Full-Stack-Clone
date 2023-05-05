@@ -28,6 +28,7 @@
   </p>
 </div>
 
+[![Fiverr FullStack Clone](https://github.com/arifhossain512/Full-Stack-Clone/actions/workflows/node.yml/badge.svg)](https://github.com/arifhossain512/Full-Stack-Clone/actions/workflows/node.yml)
 
 <!-- TABLE OF CONTENTS -->
 <details>
